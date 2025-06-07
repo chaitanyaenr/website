@@ -47,7 +47,23 @@ The following environment variables can be set on the host running the container
 ex.) 
 `export <parameter_name>=<value>`
 
-See list of variables that apply to all scenarios [here](../../all-scenario-env.md) that can be used/set in addition to these scenario specific variables
+Parameter               | Description                                                           | Default
+----------------------- | -----------------------------------------------------------------     | ------------------------------------ |
+ACTION                  | Action can be one of the [following](https://github.com/krkn-chaos/krkn/blob/master/docs/node_scenarios.md) | node_stop_start_scenario |
+LABEL_SELECTOR          | Node label to target                                                  | node-role.kubernetes.io/worker       |
+NODE_NAME               | Node name to inject faults in case of targeting a specific node; Can set multiple node names separated by a comma      | ""                                   |
+INSTANCE_COUNT          | Targeted instance count matching the label selector                   | 1                                    |
+RUNS                    | Iterations to perform action on a single node                         | 1                                    |
+CLOUD_TYPE              | Cloud platform on top of which cluster is running, supported platforms - aws, vmware, ibmcloud, bm           | aws |
+TIMEOUT                 | Duration to wait for completion of node scenario injection             | 180                                |
+DURATION                | Duration to stop the node before running the start action - not supported for vmware and ibm cloud type             | 120                                |
+KUBE_CHECK       | Connect to the kubernetes api to see if the node gets to a certain state during the node scenario   | False                               |
+PARALLEL     | Run action on label or node name in parallel or sequential, set to true for parallel | False |
+BMC_USER                 | Only needed for Baremetal ( bm ) - IPMI/bmc username | "" |
+BMC_PASSWORD             | Only needed for Baremetal ( bm ) - IPMI/bmc password | "" |
+BMC_ADDR                 | Only needed for Baremetal ( bm ) - IPMI/bmc username | "" |
+
+See list of variables that apply to all scenarios [here](https://deploy-preview-87--krkn-chaos.netlify.app/docs/scenarios/all-scenario-env/) that can be used/set in addition to these scenario specific variables
 
 #### Demo
 You can find a link to a demo of the scenario [here](https://asciinema.org/a/ANZY7HhPdWTNaWt4xMFanF6Q5)
